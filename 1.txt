@@ -1,0 +1,9 @@
+[Ember]
+- Has dedicated CLI, installed through NPM
+- Size of first, blank project is 339MB
+	- 388MB is for project-local node_modules. Contains 1002 dependencies
+	- Already added in .gitignore. Which is following ember project structure
+
+[Angular]
+
+[Vue]
