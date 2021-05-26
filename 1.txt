@@ -1,8 +1,16 @@
 [Ember]
 - Has dedicated CLI, installed through NPM
+
 - Size of first, blank project is 339MB
 	- 388MB is for project-local node_modules. Contains 1002 dependencies
 	- Already added in .gitignore. Which is following ember project structure
+- `ember server` to spawn a quick web server
+- Quick web server has live reload. Reacts to file changes with recompilation
+	- "and refreshes any open browser pages." Um, how does it..?
+	
+- Template file extension is 'hbs'.
+- Template file can work just like HTML, except everything is implicitly in a <body> tag (No need to write HTML header, so on).
+	- Live reload watches for temporary files as well (~index.hbs).
 
 [Angular]
 
