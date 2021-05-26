@@ -11,6 +11,11 @@
 - Template file extension is 'hbs'.
 - Template file can work just like HTML, except everything is implicitly in a <body> tag (No need to write HTML header, so on).
 	- Live reload watches for temporary files as well (~index.hbs).
+	
+- App templates, code, stylesheets, go into /app.
+- Assets go into /public/assets.
+	- Files placed in /public can be accessed by the public through URLs.
+	- Remember to use /public/assets subdirectory!
 
 [Angular]
 
