@@ -17,6 +17,46 @@
 	- Files placed in /public can be accessed by the public through URLs.
 	- Remember to use /public/assets subdirectory!
 
+
 [Angular]
+- Angular is an entire platform, containing more than a framework.
+- It is all TypeScript-based.
+
+- Angular components are typescript classes decorated with @Component().
+- In the source code, the decorator is not small (like "@Component(Atom)"),
+  rather it is passed a whole JavaScript object. So it will typically be
+  multi-line.
+  
+- Decorator specifies CSS selector. All HTML elements in the template
+  matching the selector will be deemed an instance of the component.
+- Decorator also specifies template for component, either a filepath or
+  inline as a JavaScript string.
+- Angular templates are like HTML, except custom tags can be used -
+  when they match the CSS selector in the decorator, its contents are
+  filled - 'rendering' - using the template in the decorator.
+  
+- Templates also support dynamic values, variables from the component class.
+  When the instance is updated the rendered DOM automatically changes.
+- Templates have more features. The resulting syntax makes use of a
+  decent amount of special characters..
+  
+  
+- Angular has native support for dependency injection.
+  @Injectable({providedIn: 'root'}) registers a class. Then any constructor
+  in other classes asking for that type can get injected with an instance.
+
+
+- Has dedicated CLI.
+	- It is implied it is possible to create an Angular appp without it..
+	- Can one-time build an app into an output directory.
+	- Can spawn a quick web server with live reloading.
+	- Can publicly serve an Angular app then run end-to-end tests.
+	
+- Provides libraries for various common SPA features.
+	- Has a library for animations.
+	- Has a library for PWAs.
+	- Has a library for forms.
+	- Has a library for client-server communication.
+
 
 [Vue]
