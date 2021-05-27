@@ -2,18 +2,54 @@
 <HTML>
 
 	<META CHARSET="UTF-8">
-	
-	<DIV ID="app">
-		{{ message }}
-	</DIV>
-	
-	<HR>
-	
-	<DIV ID="app2">
-		<BUTTON V-BIND:TITLE="message">
-			Look at my tooltip!
-		</BUTTON>
-	</DIV>
+
+	<BODY>	
+		<DIV ID="app">
+			{{ message }}
+		</DIV>
+		
+		<HR>
+		
+		<DIV ID="app2">
+			<BUTTON V-BIND:TITLE="message">
+				Look at my tooltip!
+			</BUTTON>
+		</DIV>
+		
+		<HR>
+		
+		<DIV ID="app3">
+			&nbsp;
+			<SPAN V-IF="visible" STYLE="color: brown">
+				Have you had tea?
+			</SPAN>
+		</DIV>
+		
+		<HR>
+		
+		<DIV ID="app4">
+			<UL>
+				<LI V-FOR="article in summary">
+					{{ article.headline }}
+				</LI>
+			</UL>
+		</DIV>
+		
+		<HR>
+		
+		<DIV ID="app5">
+			<SPAN>{{ text }}</SPAN>
+			<BUTTON V-ON:CLICK="reverseWords">Reverse words</BUTTON>
+		</DIV>
+		
+		<HR>
+		
+		<DIV ID="app6">			
+			<INPUT V-MODEL="text" />
+			&nbsp;&nbsp;
+			<SPAN STYLE="font-size: 48px; color: #F88; font-style: italic; text-shadow: black 1px 1px;">{{ text }}</SPAN>
+		</DIV>
+	</BODY>
 
 	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
 	<SCRIPT>
@@ -32,6 +68,41 @@
 					+ new Date().toLocaleString()
 			}
 		});
+		
+		var app3 = new Vue({
+			el: "#app3",
+			data: { visible: true }
+		});
+		var timer3 = window.setInterval(function () {
+			app3.visible = !app3.visible;
+		}, 1000);
+		
+		var app4 = new Vue({
+			el: "#app4",
+			data: {
+				summary: [
+					{ headline: 'Oyster shells considered useful?' },
+					{ headline: 'My second trip to Kelantan' },
+					{ headline: 'Historical Vietnamese artefact found in' }
+				]
+			}
+		});
+		
+		var app5 = new Vue({
+			el: "#app5",
+			data: { text: "centenary wine brought out" },
+			methods: {
+				reverseWords: function () {
+					var words = this.text.split(' ');
+					words = words.reverse();
+					this.text = words.join(' ');
+				}
+			}
+		});
+		
+		var app6 = new Vue({
+			el: "#app6",
+			data: { text: 'Title' }
+		});
 	</SCRIPT>
-	
 </HTML>

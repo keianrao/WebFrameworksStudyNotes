@@ -87,3 +87,8 @@
 	  their values.
 - Without reactivity, this is considered just string templating.
   But with Vue the DOM is now reactive, to data changes in JavaScript.
+- For conditional constructs, Vue uses HTML attributes.
+
+- Vue also provides automatic setup of transition effects.
+  (But it also supports animation libraries. Apparently there is
+  an animation library called 'Animate.css').
