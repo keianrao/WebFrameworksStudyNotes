@@ -59,4 +59,16 @@
 	- Has a library for client-server communication.
 
 
+- Both Ember and Angular are quite noisy about minimum versions.
+  Angular CLI refuses to run in Debian's version of Node.js, v10.24.0.
+  	- Debian has Angular packaged, but it is a plain library rather than
+	  a node module. One has to import /usr/share/javascript/angular.js
+	- I can edit Angular versions in package.json, but not sure how the
+	  other dependencies will react. No tool to downgrade all, no?
+	- Since I cannot build the Angular tutorial locally,
+	  for now I will skip it.
+
+
 [Vue]
+
+
