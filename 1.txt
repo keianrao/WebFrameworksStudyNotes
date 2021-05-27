@@ -70,7 +70,6 @@
 
 
 [Vue]
-
 - Designed to be incrementally adoptable
 	- Vue's core library only deals with (MVC) view layer
 	
@@ -102,3 +101,4 @@
   given it starts off containing an element with an invalid tag. But then
   I just added an element with a genuinely random tag, and the browser
   still did not complain.
+
