@@ -65,8 +65,36 @@
 	  a node module. One has to import /usr/share/javascript/angular.js
 	- I can edit Angular versions in package.json, but not sure how the
 	  other dependencies will react. No tool to downgrade all, no?
-	- Since I cannot build the Angular tutorial locally,
-	  for now I will skip it.
+
+
+- *ngFor and *ngIf attributes in HTML templates can handle many tasks.
+- Dynamic attributes using [attribute] syntax, e.g. [title].
+- Event handling using (event) syntax, e.g. (click).
+
+- Angular components typically in their own folder under app.
+- Usually broken out into three files:
+	- TypeScript file for definition and methods.
+	- HTML file as template (Not a complete HTML document).
+	- CSS file for any styles.
+	- Should be possible to write these files oneself, rather than
+	  use some generator script.
+- By convention, Angular selector names have 'app-' prefix.
+
+- @Input() decorator allows accepting a parameter through attributes.
+  For example, for '@Input() variable!: Type' in subcomponent definition,
+  supercomponent template can have '<subcomponent [variable]="instance">'.
+  Friend will then be injected.
+  
+- @Output() decorator marks events from an EventEmitter as to be sent to
+  supercomponent. The variable name will be used as the name of the event.
+  Then supercomponent can do '(eventName)="eventHandler()"'.
+  
+- In entries for RouterModule, path can contain parameters. For example,
+  'page/:id'. Then, when a template has an anchor with href to '/page',
+  they can pass: '<a [routerLink]="['/page', someObject.id]">'.
+- The subcomponent's constructor can then receive an ActivatedRoute argument,
+  which contains the mapping, among other things.
+- Tutorial says 'subcomponent is now considered configured for using a service'.
 
 
 [Vue]
