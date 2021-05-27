@@ -71,4 +71,19 @@
 
 [Vue]
 
+- Designed to be incrementally adoptable
+	- Vue's core library only deals with (MVC) view layer
+	
+- Vue's tutorial recommends against starting with vue-cli. They say
+  one should be familliar with 'Node.js-based build tools' before trying..
 
+- Vue has a templating language. But rather than needing dedicated files,
+  the template code can be placed as plain text contents in a div.
+- A Vue "application instance"? is constructed, upon which the templates
+  inside the divs are parsed and replaced.
+  	- Vue instance constructed with an element locator.
+	  CSS selector syntax, like in Ember.
+	- And, mappings between data variables in the templates, and
+	  their values.
+- Without reactivity, this is considered just string templating.
+  But with Vue the DOM is now reactive, to data changes in JavaScript.
