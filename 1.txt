@@ -92,3 +92,13 @@
 - Vue also provides automatic setup of transition effects.
   (But it also supports animation libraries. Apparently there is
   an animation library called 'Animate.css').
+
+- Vue components are pre-defined Vue instances.
+	- Exported using the 'Vue.component' function.
+- Also results in some custom HTML tag being usable.
+  My guess was that perhaps the frameworks are using Web Components..
+  But Vue clarifies that it is its own system
+- I was confused at why my browser was not throwing errors at the HTML file,
+  given it starts off containing an element with an invalid tag. But then
+  I just added an element with a genuinely random tag, and the browser
+  still did not complain.
