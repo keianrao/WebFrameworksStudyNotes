@@ -186,25 +186,25 @@ Apparently 'jumbo' wasn't random, it was a reference.
 But, one I don't understand..
 */
 
-.header {
+.jumbo {
 	padding: 50px;
 	background: #f6f6f6;
 }
-.header:hover {
+.jumbo:hover {
 	background-color: #f3f3f3;
 }
 
-.header h2 {
+.jumbo h2 {
 	font-size: 3.2em;
 	/* Come to think of it, these are hardcoded for font Lato, aren't they? */
 	margin-top: -25px;
 }
 
-.header p, .header address {
+.jumbo p, .jumbo address {
 	margin-bottom: 25px;
 }
 
-.header img {
+.jumbo img {
 	height: 200px;
 	position: relative;
 	top: -25px;

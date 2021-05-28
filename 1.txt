@@ -17,6 +17,12 @@
 	- Files placed in /public can be accessed by the public through URLs.
 	- Remember to use /public/assets subdirectory!
 
+- To setup routers, Router.map called with callback as argument. Callback
+  will have 'this' set, which has a 'route' method.
+  	- this.route(id) will create route and map it to '/id'.
+	- this.route(id, path) will create route and map it to path.
+	- templates/id.hbs will automatically be used.
+
 
 [Angular]
 - Angular is an entire platform, containing more than a framework.
@@ -95,6 +101,12 @@
 - The subcomponent's constructor can then receive an ActivatedRoute argument,
   which contains the mapping, among other things.
 - Tutorial says 'subcomponent is now considered configured for using a service'.
+- Steps seen for passing data to a new page:
+	- Add route definition with ID parameter
+	- Supercomponent passes ID through [routerLink] attribute
+	- Subcomponent receives ID through ActivatedRoute.snapshot.paramMap,
+	  finds the data object itself through its own means
+	- Subcomponent renders found data object in template.
 
 
 [Vue]
