@@ -32,7 +32,7 @@ body {
 	padding: 10px 30px 10px;
 	text-decoration: none;
 	color: #fff;
-	/* White button contrasts against grey background. */
+	background: #016aba;
 	border-radius: 5px;
 	border: none;
 	font-size: 20px;
