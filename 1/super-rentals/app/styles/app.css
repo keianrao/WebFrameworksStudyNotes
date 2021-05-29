@@ -237,8 +237,18 @@ But, one I don't understand..
 	flex-basis: 150px;
 	margin: 20px 25px;
 	/* I wonder how these look like.. */
-	
+		
 	text-align: center;
+}
+.rental .image img {
+	height: unset;
+	position: unset;
+	top: unset;
+	right: unset;
+	/*
+	Negate the effects of .jumbo img above.
+	It was messing up the rental images - how did the authors miss it?
+	*/
 }
 
 .rental button.image {

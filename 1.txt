@@ -63,6 +63,12 @@
   then using the component in other templates. So Ember is probably decent
   as a static HTML page engine.
 - The special template, 'application.hbs', wraps around all other templates.
+
+- When components are placed in subdirectories, they become namespaced under
+  that subdirectory's name. <Subdirectory::Component> - C++ style.
+  
+- In component template, '...attributes' can be used. All the attributes
+  placed on the component (within other templates) will be passed/copied in.
   
 
 [Angular]
