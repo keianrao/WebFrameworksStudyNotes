@@ -58,8 +58,13 @@
 	- If still alive, it has invalid caching (of the tested code).
 	- It can give nonsensical error messages (e.g. "hbs should be invoked
 	  with at least a single argument" at "let templ = hbs(templb)").
+
+- Adding a single HTML template file in app/components is sufficient for
+  then using the component in other templates. So Ember is probably decent
+  as a static HTML page engine.
+- The special template, 'application.hbs', wraps around all other templates.
   
-	  
+
 [Angular]
 - Angular is an entire platform, containing more than a framework.
 - It is all TypeScript-based.
