@@ -22,8 +22,44 @@
   	- this.route(id) will create route and map it to '/id'.
 	- this.route(id, path) will create route and map it to path.
 	- templates/id.hbs will automatically be used.
+	
+- Ember components also come with their own HTML tags to use in templates.
+  There are predefined components, such as LinkTo.
+  
 
-
+- Ember CLI has 'generate' subcommand. Following framework conventions, it
+  generates files with boilerplate contents.
+- One type available for generating is an acceptance test file.
+- Acceptance tests uses a few imports to get a workflow going.
+	- QUnit's 'module', 'test' functions for the overall test structure,
+	  both taking user-defined callbacks. The former's receives "hooks",
+	  while the latter's receives an asserter object.
+	- Ember provides a (programmatic) website client in '@ember/test-helpers'.
+- Acceptance tests, a.k.a. application tests, are described as being a
+  programmatic equivalent to testing the user interface.
+- Tests are run using a special test environment.
+  Which can be run in server form, 'ember test --server'.
+  Manually navigating to the page in a browser will begin tests, and
+  give the browser a GUI interface showing the results of the tests.
+  	- Like 'ember serve', will auto-reload on file change.
+	
+	
+- Ember components can/are used for any reusable code, regardless of size.
+  They are also described as 'templates with names'.
+- (In Ember,) Component tests are considered integration tests, and
+  distinct from acceptance tests. The justification is that, the
+  acceptance tests were about entire rendered and navigated pages,
+  whereas the component tests are for individual renderings.
+  
+- I am doing some debugging work right now (regarding Ember's compiled
+  templates - do they use the 'handlebars' library?). The test server
+  is not very good.
+  	- Its stability; I've had to SIGKILL it several times now.
+	- If still alive, it has invalid caching (of the tested code).
+	- It can give nonsensical error messages (e.g. "hbs should be invoked
+	  with at least a single argument" at "let templ = hbs(templb)").
+  
+	  
 [Angular]
 - Angular is an entire platform, containing more than a framework.
 - It is all TypeScript-based.
