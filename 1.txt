@@ -266,3 +266,32 @@
 - One can also use watchers, in 'watch', called when a property changes.
   They're said to be good for launching async operations and imperatively
   making internal changes.
+
+- It seems like present JavaScript programmers edit CSS classes a lot to
+  make visual changes.
+- In Vue, class bindings ('v-bind:class') and style bindings, have
+  special parsing to make things easier.
+  
+- For class bindings:
+	- An object can be thrown in, mapping class names to values or, 
+	  to boolean data properties, to toggle those classes.
+      ':class="{ highlight: wasLastSelected }"'
+	- Or an array can be thrown in, containing data property names, and
+      those data properties' values will be used as the classes.
+	- Or, esoterically, have an object inside the array as well.
+	- Tutorial recommends trying these with computed properties,
+	  resulting in entirely reactive class assignments.
+
+- Also, v-bind:class will append, not override, the usual HTML class attribute.
+- Similarly, if you are using Vue components, if you add a 'class=' or
+  'v-bind:class=' to the component tag, it will append to whatever classes
+  the component had internally set for itself.
+  
+- For style bindings, it's like CSS, except of course it wouldn't have CSS's
+  lack of variables - one can use data properties.
+  	- Normally style bindings are an object, but one can throw in an array
+	  of style objects, which will merge all of them.
+	- Also, one may feel free to use newer CSS properties as they please -
+	  Vue will automatically add vendor prefixes if needed. 
+	- One can also give a CSS property an array as a value - it will pick
+	  the last value in the array that the browser supports (back to front).
