@@ -257,3 +257,12 @@
   getters.
 - (Vue docs say that people from AngularJS like to use watch to recompute
   a value upon change of another value, rather than use computed properties)
+- One can use either computed properties (in 'computed') or methods (in
+  'methods'). Aside from not needing to call computed properties like a
+  function ('v-bind:attr=computedProperty', not 'computedProperty()'),
+  computed properties are aware of their reactive dependencies, and will
+  automatically cache the last computation, recomputing only when the
+  dependencies change.
+- One can also use watchers, in 'watch', called when a property changes.
+  They're said to be good for launching async operations and imperatively
+  making internal changes.
