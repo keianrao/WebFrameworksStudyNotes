@@ -6,10 +6,25 @@
 	<BODY>
 		<DIV ID="app">
 			<STAR-LI
-				v-for="food in plate"
-				v-bind:item="food"
-				v-bind:key="food.name"
+				V-FOR="food in plate"
+				V-BIND:ITEM="food"
+				V-BIND:KEY="food.name"
 			/>
+		</DIV>
+		<HR>		
+		<DIV ID="app2">
+			<SPAN V-BIND:TITLE="desc()">
+				{{ numbers.reduce((acc, curr) => acc + curr) }}
+			</SPAN>
+		</DIV>
+		<HR>
+		<DIV ID="app3">
+			<BUTTON
+				V-BIND:STYLE="colourStyle"
+				V-ON:CLICK="darkenColour()">
+				Darken my text!
+			</BUTTON>
+			<BUTTON V-ON:CLICK="resetColour()">Reset</BUTTON>
 		</DIV>
 	</BODY>
 
@@ -30,5 +45,52 @@
 				]
 			}
 		});
+		
+		var app2numbers = [ 2, 3, 4, 5, 6 ];
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				numbers: app2numbers,
+				desc: function() { return "Sum of " + app2numbers; }
+			}
+		});
+		
+		var app3 = new Vue({
+			el: "#app3",
+			data: {
+				colour: [0, 128, 255],
+				max: (a, b) => b > a ? b : a,
+				darkenColour: function() {
+					/*
+					this.colour[0] = this.max(0, this.colour[0] - 25);
+					this.colour[1] = this.max(0, this.colour[1] - 25);
+					this.colour[2] = this.max(0, this.colour[2] - 25);
+					
+					https://vuejs.org/v2/guide/reactivity.html#For-Arrays
+					colourStyle will not be updated if we do this.
+					*/
+					Vue.set(this.colour, 0, this.max(0, this.colour[0] - 25));
+					Vue.set(this.colour, 1, this.max(0, this.colour[1] - 25));
+					Vue.set(this.colour, 2, this.max(0, this.colour[2] - 25));
+					/*
+					Alternatively, if you were doing functional programming,
+					then you'd have separate arrays flying around so you can
+					just overwrite this.colour entirely with the candidate.
+					*/
+				},
+				resetColour: function() {
+					this.colour = [0, 128, 255];
+				}
+			},
+			computed: {
+				colourStyle: function() {
+					var rPart = this.colour[0].toString(16).padStart(2, "0");
+					var gPart = this.colour[1].toString(16).padStart(2, "0");
+					var bPart = this.colour[2].toString(16).padStart(2, "0");
+					return `color: #${rPart}${gPart}${bPart}`;
+				}
+			}
+		});
 	</SCRIPT>
+	
 </HTML>

@@ -248,3 +248,12 @@
 - For 'v-bind:attribute', "v-bind" can be omitted, ':attribute' will be
   deemed a v-bind.
 - For 'v-on:event', "v-on" can be replaced by '@', '@click'.
+
+- In-template expressions are really meant for data binding, they're not
+  places to write code, even when it's possible. Declarative files
+  (in this case, a page template) should not contain logic.
+- In Vue instance (in JavaScript code), add 'computed'. A JavaScript object
+  mapping variable names to functions that compute their value. Basically,
+  getters.
+- (Vue docs say that people from AngularJS like to use watch to recompute
+  a value upon change of another value, rather than use computed properties)
