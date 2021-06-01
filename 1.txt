@@ -206,16 +206,45 @@
 	  reactivity, just itnerpolate once.
 - Text interpolation inserts as plain text. If HTML interpolation intended,
   it's possible. (I won't mention it further)
-- Mustache syntax not a thing for HTML attributes.
+- Mustache syntax is not a thing for HTML attributes.
   Instead of 'attr="{{ attrVal }}"', do 'v-bind:attr="attrVal"'.
   	- If boolean variable, 'attribute=false' is wrong, defining attribute
 	  in the first place sets it as true. So Vue will omit attribute if
 	  value in question is a boolean.
 	- Similarly, attribute will be omitted if value is nul or undefined.
+
 - For Vue, text interpolation and attribute binding actually accepts
   any JavaScript expression.
+- Or rather, all Vue directives (HTML attributes with the 'v-' prefix)
+  expect a single JavaScript expression.
   	- Scope is of owning Vue instance.
 	- Only one expression is accepted. No statements, no flow controls.
-- Expressions in templates are sandboxed! There is a whitelist of global
-  object (libraries) to use, but otherwise, negociate data through the
-  enclosing Vue instance.
+- Expressions, both in text interpolation and directives, are sandboxed!
+- There is a whitelist of global object (libraries) to use, but otherwise, 
+  negotiate data through the enclosing Vue instance.
+- Certain attributes "take an argument" by needing a suffix in their name,
+  so they kind of are different attributes. Examples are "v-bind:href",
+  "v-on:click".
+
+- In Vue, when an attribute looks like follows:
+  'attribute:[expression]="value"', what's in the square brackets is a
+  whole JavaScript expression.
+  	- I'm not sure if other frameworks follow such a system.
+	- These are useful for having programmatically deciding an attribute name.
+	- If expression evaluates to null, attribute is removed.
+	- If expression evaluates to non-string, a warning is thrown.
+	  The result needs to be a valid part of a HTML attribute name.
+- Templates written directly in the HTML file are called 'in-DOM templates'.
+  Recall that HTML tags and attributes are case-insensitive!
+  So if you do 'v-bind:[caseSensitiveName]', it will actually be interpreted
+  as lowercase, and mystery arises as it binds to 'casesensitivename'.
+
+- Directives can have modifiers, suffixes starting with a dot.
+  "v-on:submit.prevent" for example. (.prevent tells v-on to call
+  preventDefault() first on event.)
+  
+- For the convenience of SPA writers (where the whole site is Vue), and
+  programmers that hate verbosity, v-bind and v-on get special shorthands.
+- For 'v-bind:attribute', "v-bind" can be omitted, ':attribute' will be
+  deemed a v-bind.
+- For 'v-on:event', "v-on" can be replaced by '@', '@click'.
