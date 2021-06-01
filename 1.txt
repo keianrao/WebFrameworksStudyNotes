@@ -66,10 +66,13 @@
 
 - When components are placed in subdirectories, they become namespaced under
   that subdirectory's name. <Subdirectory::Component> - C++ style.
-  
 - In component template, '...attributes' can be used. All the attributes
   placed on the component (within other templates) will be passed/copied in.
   
+  
+- HTML documents/elements that are static, are called "presentational".
+  They are markup that present content.
+
 
 [Angular]
 - Angular is an entire platform, containing more than a framework.
@@ -189,3 +192,30 @@
   I just added an element with a genuinely random tag, and the browser
   still did not complain.
 
+- Internally, Vue compiles the templates into Virtual DOM render functions.
+  (And it uses its reactivity metadata to re-render as few components as
+  needed.) Adept JavaScript programmers can just write and override in
+  their own render function, rather than Vue compiling a template.
+  
+- Templates can have data binded into them.
+- Simplest form is text interpolation, {{ variable }}.
+	- We saw that this is so common it is basically standard.
+	  Apparently this is called "Mustache" syntax.
+	- Recall that unlike others, will react to value update.
+	- v-once directive (HTML attribute) on enclosing tag to turn off
+	  reactivity, just itnerpolate once.
+- Text interpolation inserts as plain text. If HTML interpolation intended,
+  it's possible. (I won't mention it further)
+- Mustache syntax not a thing for HTML attributes.
+  Instead of 'attr="{{ attrVal }}"', do 'v-bind:attr="attrVal"'.
+  	- If boolean variable, 'attribute=false' is wrong, defining attribute
+	  in the first place sets it as true. So Vue will omit attribute if
+	  value in question is a boolean.
+	- Similarly, attribute will be omitted if value is nul or undefined.
+- For Vue, text interpolation and attribute binding actually accepts
+  any JavaScript expression.
+  	- Scope is of owning Vue instance.
+	- Only one expression is accepted. No statements, no flow controls.
+- Expressions in templates are sandboxed! There is a whitelist of global
+  object (libraries) to use, but otherwise, negociate data through the
+  enclosing Vue instance.
