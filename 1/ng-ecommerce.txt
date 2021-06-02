@@ -1,3 +1,0 @@
-I have to do this online in StackBlitz, as the downloadable project installs dependencies through NPM in versions that don't support my Node.js version in Debian. Angular CLI itself is among them.
-
-The possible solutions I can think of, is either: to install Nodesource's Node.js distribution (it provides all Node-related binaries and conflicts with all Debian Node packages); or to run a rolling distro, in a VM or baremetal. Both of these are quite destructive actions so I'll just acquiesce and use the cloud editor for now.

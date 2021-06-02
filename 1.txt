@@ -186,7 +186,14 @@
   of 'div'", or something not being found, check that the component you are
   working in is registered in @NgModule.declarations.
 	- In StackBlitz at least, the compile errors are not very helpful.
-  
+
+- In Angular CLI, 'ng build' compiles the app, then bundles it into the
+  'dist' folder. Which contains all files needed for a web server to
+  host the app.
+- The files are said to be static. I'm guessing what that means is that
+  they don't edit local files nor spawn local processes, all the activities
+  are running within the browser..?
+
   
 [Vue]
 - Designed to be incrementally adoptable

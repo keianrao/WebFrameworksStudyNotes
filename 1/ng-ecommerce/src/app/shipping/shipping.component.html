@@ -1,0 +1,12 @@
+<h3>Shipping Prices</h3>
+
+<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
+  <!--
+    The async pipe watches a stream and asynchronously keeps returning back the latest item from it. In this case the pipe will be closed when the component containing it is destroyed.
+
+    Also, the async pipe eats Observables.
+  -->
+
+  <span>{{ shipping.type }}</span>
+  <span>{{ shipping.price }}</span>
+</div>
