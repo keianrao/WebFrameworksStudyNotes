@@ -157,8 +157,37 @@
 	- Subcomponent receives ID through ActivatedRoute.snapshot.paramMap,
 	  finds the data object itself through its own means
 	- Subcomponent renders found data object in template.
+	
+- A service in Angular is an instance of a class made available to the
+  rest of the application through the dependency injection system.
+- Unlike components which conventionally go under 'app' and are broken out
+  into three files, services are, at least in the tutorial, singular files
+  going in the app root.
+- A service and a component can have the same name. They are distinguished
+  by their type as a suffix: 'name.service', 'name.component'.
+  
+- In JavaScript frameworks, generally you are working with a 'this' object,
+  so working with its properties you must prefix their names with 'this.'.
+  Unprefixed variables are assumed to be local variables or global variables.
+  
+- I think the following applies to any Angular directive..?
+  Both 'routerLink=URL' and '[routerLink]="[URL, suffix]"' are valid.
+  Note that the latter needs to have the value of an array.
+  
+- To import an Angular library, first import the module inside app.module.ts.
+  The module gives providers of a certain service - these providers are
+  registered globally, i.e. available to import, by adding the module
+  inside 'imports' inside the argument to @NgModule.
+- Angular's HttpClient service has a method #get that eats a URL and
+  turns it into a stream of a user-specified kind of object. The simplest
+  call is available for JSON files.
 
-
+- If you get a "Can't bind to 'ngForOf' since it isn't a known property
+  of 'div'", or something not being found, check that the component you are
+  working in is registered in @NgModule.declarations.
+	- In StackBlitz at least, the compile errors are not very helpful.
+  
+  
 [Vue]
 - Designed to be incrementally adoptable
 	- Vue's core library only deals with (MVC) view layer
