@@ -78,13 +78,15 @@
   in which case JavaScript files will have to be brought in.  
 
   
-- Ember templates have conditional syntax. However, they are quite strange.
-	- An opener starts with '#', e.g. '#if'.
-	  But a closer starts with '/', e.g. '/if'.
+- Ember templates have conditional syntax. However, they are slightly strange.
 	- While a variable can be interpolated into the template with
-	  '{{ variable }}', one cannot do '{{ #if condition }}'.
+	  '{{ variable }}', one cannot do '{{ if condition value }}'.
 	  Conditional syntax statements need the starting braces connected
-	  to the symbol. '{{#if condition }}', '{{else}}'.
+	  to the symbol. '{{if condition "value"}}', '{{else}}'.
+	- Openers and closers are like XML, {{name}}, {{/name}}. But closers
+	  are probably for those that change parsing of the template indefinitely
+	  until they're closed. The openers for those are like C directives,
+	  '{{#name}}'. For example, '{{#if condition}}' and '{{/if}}' pair.
 
 
 - Like in other frameworks, component class files reside in the same
