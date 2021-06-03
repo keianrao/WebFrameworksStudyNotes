@@ -76,10 +76,7 @@
   only (HTML) templates, without needing a JavaScript file nor classes.
 - When an element is dynamic, there is a good chance they contain state,
   in which case JavaScript files will have to be brought in.  
-- Like in other frameworks, component class files reside in the same
-  directories as template files.
-- Ember's components (new Ember's are Glimmer components) do not
-  require annotations, unlike other frameworks'.
+
   
 - Ember templates have conditional syntax. However, they are quite strange.
 	- An opener starts with '#', e.g. '#if'.
@@ -88,8 +85,20 @@
 	  '{{ variable }}', one cannot do '{{ #if condition }}'.
 	  Conditional syntax statements need the starting braces connected
 	  to the symbol. '{{#if condition }}', '{{else}}'.
-	  
-	  
+
+
+- Like in other frameworks, component class files reside in the same
+  directories as template files.
+- Ember's components (new Ember's are Glimmer components) do not require
+  decorators to work, unlike other frameworks'.  
+- Basic properties can be set in the constructor, 'this.variable = value'.
+  However, special properties like tracked properties do need a decorator.
+  Decorators cannot be used in the constructor, so the variable initialisation 
+  statement goes directly in the class definition, then able to be preceeded
+  by decorators.
+- Variables decorated as tracked will be monitored by Ember for updates.
+  Any templates using the value will re-render on update.
+
 
 [Angular]
 - Angular is an entire platform, containing more than a framework.
