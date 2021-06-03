@@ -72,6 +72,13 @@
   
 - HTML documents/elements that are static, are called "presentational".
   They are markup that present content.
+- So far in the Ember project, we have created routed pages using
+  only (HTML) templates, without needing a JavaScript file nor classes.
+- When an element is dynamic, there is a good chance they contain state,
+  in which case JavaScript files will have to be brought in.
+  
+- Like in other frameworks, component class files reside in the same
+  directories as template files.
 
 
 [Angular]
