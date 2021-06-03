@@ -240,6 +240,7 @@ But, one I don't understand..
 		
 	text-align: center;
 }
+
 .rental .image img {
 	height: unset;
 	position: unset;
@@ -249,6 +250,32 @@ But, one I don't understand..
 	Negate the effects of .jumbo img above.
 	It was messing up the rental images - how did the authors miss it?
 	*/
+
+	max-width: 100%;
+}
+
+.rental .image.large {
+	margin: 30px 25px 50px 25px;
+	flex-basis: 100%;
+}
+
+.rental .image small {
+	/* 'small' class refers to a subtitle button/link under the image. */
+	
+	display: block;
+	margin-top: 5px;
+	margin-bottom: -15px;
+	text-align: center;
+	color: #016aba;
+	
+	position: relative;
+	/* Purportedly Safari-specific fix. A clipping issue. */
+}
+
+.rental .image.large small {
+	margin-top: 10px;
+	margin-bottom: 0px;
+	font-size: 110%;
 }
 
 .rental button.image {
@@ -280,33 +307,6 @@ But, one I don't understand..
 .rental button.image:focus:after,
 .rental button.image:hover:after {
 	opacity: 0.1;
-}
-
-.rental .image img {
-	max-width: 100%;
-}
-
-.rental .image.large {
-	margin: 30px 25px 50px 25px;
-	flex-radius: 100%;
-}
-
-.rental .image small {
-	/* Not a typo? */
-	display: block;
-	margin-top: 5px;
-	margin-bottom: -15px;
-	text-align: center;
-	color: #016aba;
-	
-	position: relative;
-	/* Purportedly Safari-specific fix. A clipping issue. */
-}
-
-.rental .image.large small {
-	margin-top: 10px;
-	margin-bottom: 0px;
-	font-size: 110%;
 }
 
 .rental .details {

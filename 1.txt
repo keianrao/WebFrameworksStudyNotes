@@ -75,11 +75,21 @@
 - So far in the Ember project, we have created routed pages using
   only (HTML) templates, without needing a JavaScript file nor classes.
 - When an element is dynamic, there is a good chance they contain state,
-  in which case JavaScript files will have to be brought in.
-  
+  in which case JavaScript files will have to be brought in.  
 - Like in other frameworks, component class files reside in the same
   directories as template files.
-
+- Ember's components (new Ember's are Glimmer components) do not
+  require annotations, unlike other frameworks'.
+  
+- Ember templates have conditional syntax. However, they are quite strange.
+	- An opener starts with '#', e.g. '#if'.
+	  But a closer starts with '/', e.g. '/if'.
+	- While a variable can be interpolated into the template with
+	  '{{ variable }}', one cannot do '{{ #if condition }}'.
+	  Conditional syntax statements need the starting braces connected
+	  to the symbol. '{{#if condition }}', '{{else}}'.
+	  
+	  
 
 [Angular]
 - Angular is an entire platform, containing more than a framework.
