@@ -340,10 +340,14 @@ But, one I don't understand..
 	font-style: normal;
 }
 
-.rental map {
+
+
+.rental .map {
 	width: 150px;
 	height: 150px;
 }
+
+
 
 .rental.detailed {
 	background: none;

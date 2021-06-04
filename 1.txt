@@ -100,6 +100,19 @@
   by decorators.
 - Variables decorated as tracked will be monitored by Ember for updates.
   Any templates using the value will re-render on update.
+  
+  
+- Ember uses packages from npm. It seems other frameworks do as well?
+  ArcGIS publishes AMD modules, but they have a library 'esri-loader' and
+  NPM module '@arcgis/core' which they advertise as compatible with
+  Angular, Ember, React, Vue, etc..
+- To install a package of a specific version in NPM, specify 'package@version'.
+- It seems some packages prune their older versions. To see available
+  versions, do 'npm view package versions'.
+  
+  
+- Ember has a 'environment.js' file that is structureed.
+  One of its uses is to hold API keys.
 
 
 [Angular]
