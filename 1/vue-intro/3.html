@@ -4,12 +4,103 @@
 	<META CHARSET="UTF-8">
 
 	<BODY>
-		
+		<UL ID="app">
+			<LI V-FOR="item in items" :KEY="item.caption">
+				{{ item.caption }}
+			</LI>
+		</UL>
+		<HR>
+		<DIV ID="app2">
+			<DIV V-FOR="(value, key) in object">
+				{{ key }} = {{ value }}
+			</DIV>
+		</DIV>
+		<HR>
+		<DIV ID="app3">
+			<DIV>Numbers:<SPAN V-FOR="n of numbers"> {{ n }}</DIV>
+			<DIV>Odd:<SPAN V-FOR="n of odd"> {{ n }}</DIV>
+			<DIV>Even:<SPAN V-FOR="n of even"> {{ n }}</DIV>
+		</DIV>
+		<HR>
+		<DIV ID="app4">
+			<FORM V-ON:SUBMIT.PREVENT="postMessage">
+				<LABEL FOR="msg-input">Message:</LABEL>
+				<INPUT ID="msg-input" V-MODEL="newMessage"/>
+				<BUTTON>Post</BUTTON>
+			</FORM>
+			<UL STYLE="list-style-type: none">
+				<MESSAGE
+					V-FOR="message in messages"
+					V-BIND:KEY="message.message"
+					V-BIND:POSTER="message.poster"
+					V-BIND:MESSAGE="message.message" />
+			</UL>
+		</DIV>
 	</BODY>
 
 	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
 	<SCRIPT>
-
+		var app = new Vue({
+			el: '#app',
+			data: {
+				items: [
+					{ caption: 'Circumflex' },
+					{ caption: 'Ampersand' }
+				]
+			}
+		});
+		
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				object: {
+					name: "Iterating values in object",
+					caption: "Perhaps this is interesting when a JSON object is brought in."
+				}
+			}
+		});
+		
+		var app3 = new Vue({
+			el: "#app3",
+			data: {
+				numbers: [ 1, 2 ]
+			},
+			computed: {
+				odd: function() {
+					return this.numbers.filter(n => n % 2 == 1);
+				},
+				even: function() {
+					return this.numbers.filter(n => n % 2 == 0);
+				}
+			}
+		});
+		setInterval(function() {
+			if (app3.numbers.length == 3)
+				app3.numbers.pop();
+			else if (app3.numbers.length == 2)
+				app3.numbers.push(3);
+		}, 1000);
+		
+		Vue.component('message', {
+			template: "<LI>{{ poster }}: {{ message }}</LI>",
+			props: ['poster', 'message']
+		});
+		var app4 = new Vue({
+			el: "#app4",
+			data: {
+				messages: [],
+				newMessage: ''
+			},
+			methods: {
+				postMessage: function() {
+					this.messages.push({
+						poster: "Guest",
+						message: this.newMessage
+					});
+					this.newMessage = '';
+				}
+			}
+		});
 	</SCRIPT>
 	
 </HTML>

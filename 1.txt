@@ -1,4 +1,4 @@
-[Ember]
+ [Ember]
 - Has dedicated CLI, installed through NPM
 
 - Size of first, blank project is 339MB
@@ -113,6 +113,10 @@
   
 - Ember has a 'environment.js' file that is structureed.
   One of its uses is to hold API keys.
+- Ember has a strange library loading workflow, lacking in explanation
+  for several parts. For example, there is no explanation of how to
+  reverse an `ember install` (`npm uninstall` is apparently sufficient).
+  Angular and Vue may be friendlier in this regard.
 
 
 [Angular]
@@ -372,3 +376,47 @@
 	  Vue will automatically add vendor prefixes if needed. 
 	- One can also give a CSS property an array as a value - it will pick
 	  the last value in the array that the browser supports (back to front).
+
+- Vue's templates have typical conditional rendering. Of note is that,
+  divs with else can come sequentially immediately after divs with if.
+- If multiple divs are to be affected by an if or else, Vue recommends using
+  a <template> element. The <template> element is for parsing purposes only,
+  and will not be rendered as any element.
+  
+- Vue prefers against deleting and recreating elements from the DOM.
+  Instead they are reused, with visibility toggles instead.
+  Because elements are not deleted, they actually keep their contents
+  as the application progresses.
+- Of particular surprise is that, if there are two <template> elements
+  distinguished by if directives, Vue will actually reuse elements
+  common to the two. Even if the attributes or inner contents are different,
+  the elements are instantiated once and used in both templates. So values
+  inserted that were meant for one template only, will show up in the other.
+- The counter against this is to add the 'key' attribute to common elements.
+  Then the elements will be re-rendered (losing their values) each time.
+
+- There is also a v-show directive, as an alternative to v-if for visibility
+  toggling. v-show never re-renders an element, it just toggles the CSS
+  display property.
+- There are priorities set for each Vue directive, when multiple are used
+  for one element. One strange one is that v-for has precedence over v-if.
+  Therefore, mixing v-if and v-for is not recommended, since it will
+  repeatedly check.
+  
+- In Vue, one can do 'attribute="obj.value"' or 'v-bind:attribute="obj.value"'.
+  For v-for, if one does the former then all resulting instances share
+  the first object's value, while the latter properly looks up for
+  each instance.
+- It is recommended that v-for be paired with a v-bind:key, to override the
+  default behaviour of Vue editing the element array in-place to match values,
+  rather than moving elements. Default behaviour will break programs that
+  are dependent on specific DOM element instances. (And also "child component
+  state", says the Vue guide - I do not understand why)
+- v-for can be used with custom components. But custom components normally
+  accept parameters through their attributes. One has to use v-bind alongside
+  v-for to map the iterated object's properties to the component.
+
+- You may want to arm '.prevent' on @submit for forms, as otherwise the
+  form submission would reload the page. Which is not likely to be what
+  the Vue app wants.
+- Vue components can emit a 'remove' event to remove itself from a parent.
