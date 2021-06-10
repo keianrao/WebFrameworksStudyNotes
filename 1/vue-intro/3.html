@@ -44,15 +44,15 @@
 					@FOCUS="keyFocused = true"
 					@BLUR="keyFocused = false"
 					@KEYDOWN="showKey">
-				<template v-if="keyFocused">
+				<TEMPLATE V-IF="keyFocused">
 					Type a key, to bind.
-				</template>
-				<template v-else-if="key">
+				</TEMPLATE>
+				<TEMPLATE V-ELSE-IF="key">
 					{{ key }}
-				</template>
-				<template v-else>
+				</TEMPLATE>
+				<TEMPLATE V-ELSE>
 					Focus me to set a key binding.
-				</template>
+				</TEMPLATE>
 			</BUTTON>
 		</DIV>
 	</BODY>
