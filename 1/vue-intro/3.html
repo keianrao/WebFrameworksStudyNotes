@@ -36,6 +36,25 @@
 					V-BIND:MESSAGE="message.message" />
 			</UL>
 		</DIV>
+		<HR>
+		<DIV ID="app5">
+			<BUTTON @CLICK="++counter">{{ counter }}</BUTTON>
+			<BUTTON @CLICK="randomName">Random</BUTTON>
+			<BUTTON
+					@FOCUS="keyFocused = true"
+					@BLUR="keyFocused = false"
+					@KEYDOWN="showKey">
+				<template v-if="keyFocused">
+					Type a key, to bind.
+				</template>
+				<template v-else-if="key">
+					{{ key }}
+				</template>
+				<template v-else>
+					Focus me to set a key binding.
+				</template>
+			</BUTTON>
+		</DIV>
 	</BODY>
 
 	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
@@ -98,6 +117,38 @@
 						message: this.newMessage
 					});
 					this.newMessage = '';
+				}
+			}
+		});
+		
+		var app5 = new Vue({
+			el: "#app5",
+			data: {
+				counter: 0,
+				key: '',
+				keyFocused: false
+			},
+			methods: {
+				randomName: function (event) {
+					const GROUPS = ["Alpha", "Beta", "Epsilon", "Delta"];
+					var grpind = this.randomInt(GROUPS.length);
+					var num = 1 + this.randomInt(99);
+					var name = `${GROUPS[grpind]} ${num}`;
+					
+					var subtitle = "";
+					if (event) {
+						subtitle += "\nBrought to you by ";
+						subtitle += event.target.tagName;
+					}
+					
+					alert(name + subtitle);
+				},
+				randomInt: function (scale) {
+					return Math.floor(Math.random() * scale);
+				},
+				showKey: function (event) {
+					this.key = event.key;
+					event.target.blur();
 				}
 			}
 		});

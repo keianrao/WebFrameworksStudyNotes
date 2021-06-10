@@ -420,3 +420,25 @@
   form submission would reload the page. Which is not likely to be what
   the Vue app wants.
 - Vue components can emit a 'remove' event to remove itself from a parent.
+- For the value of v-on:event:
+	- A method name is accepted. In which case it is called with the
+	  DOM event object as an argument.
+	- A JavaScript statement is accepted. In which case, the DOM event object
+	  is available bound as $event. (This is useful for calling methods with
+	  specific arguments)
+- For the event modifiers:
+	- .stop stops further propogation of the event, beyond the given handler.
+	- .prevent blocks default handling of the event.
+	  For forms, this blocks reloading of the page.
+	- .passive requests immediate default handling of the event,
+	  without waiting for observers to finish.
+	- .capture catches events inbound to a subelement.
+	- .self prevents catching of events from a subelement.
+	- .once makes the event propogated only once.. in the whole app?
+- Keyboard events have special modifiers, one for every key in
+  KeyBoardEvent.key, convered to kebab case. Mouse events have
+  .left, .right, .middle. Both have the standard .ctrl, .alt, .shift,
+  and .meta modifiers.
+- Setting up of event listeners in the HTML template is preferred by Vue, to
+  keep the JS code DOM-free. Furthermore, cleanup removal of event listeners
+  is not something for the application programmer to worry about this way.
