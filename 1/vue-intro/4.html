@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<HTML>
+
+	<META CHARSET="UTF-8">
+
+	<BODY>
+		<DIV ID="app">
+			<DIV :STYLE="leftStyle">
+				<P>
+					<LABEL FOR="author">Author: </LABEL>
+					<INPUT ID="author" V-MODEL="author" />
+				</P>
+				<P>
+					<LABEL FOR="body">Body: </LABEL>
+					<TEXTAREA V-MODEL="body"></TEXTAREA>
+				</P>
+				<DIV>
+					<INPUT TYPE="checkbox" V-MODEL="signatureItems"
+						ID="greeting" VALUE="greeting" />
+					<LABEL FOR="greeting">Add greeting</LABEL>
+				</DIV>
+				<DIV>
+					<INPUT TYPE="checkbox" V-MODEL="signatureItems"
+						ID="sent" VALUE="sent" />
+					<LABEL FOR="greeting">Mention sender device</LABEL>
+				</DIV>
+				<DIV>
+					<INPUT TYPE="checkbox" V-MODEL="signatureItems" 
+						ID="joke" VALUE="joke" />
+					<LABEL FOR="greeting">Add joke</LABEL>
+				</DIV>
+			</DIV>
+			<DIV :STYLE="rightStyle">
+				<DIV>{{ body }}</DIV>
+				<DIV><BR>Best wishes,<BR>{{ author }}</DIV>			
+				<HR V-IF="signature.length > 0">
+				<DIV V-FOR="line in signature">{{ line }}</DIV>
+			</DIV>
+		</DIV>
+		<HR>
+		<DIV ID="app2">
+			<DIV STYLE="padding-bottom: 5px">
+				<DIV>
+					<INPUT TYPE="radio" V-MODEL="selected"
+						ID="numerals" :VALUE="'Numerals'">
+					<LABEL FOR="numerals">
+						{{ numerals[indexDisplayed-1] }}
+					</LABEL>
+				</DIV>
+				<DIV>
+					<INPUT TYPE="radio" V-MODEL="selected"
+						ID="english" :VALUE="'English'">
+					<LABEL FOR="english">
+						{{ english[indexDisplayed-1] }}
+					</LABEL>
+				</DIV>
+				<DIV>
+					<INPUT TYPE="radio" V-MODEL="selected"
+						ID="malay" :VALUE="'Malay'">
+					<LABEL FOR="malay">
+						{{ malay[indexDisplayed-1] }}
+					</LABEL>
+				</DIV>
+			</DIV>
+			Selected: {{ selected }}
+		</DIV>
+	</BODY>
+
+	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
+	<SCRIPT>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				author: '',
+				body: '',
+				leftStyle: {
+					"display": "inline-block",
+					"border": "2px inset #0004",
+					"padding": "0 10px 10px 10px",
+					"margin-right": "10px"
+				},
+				rightStyle: {
+					"display": "inline-block",
+				},
+				signatureItems: []
+			},
+			computed: {
+				signature: function () {
+					this.sortSignatureItems();
+				
+					return this.signatureItems.map(function (item) {
+						if (item == "greeting")
+							return "Happy holidays!";
+						else if (item == "sent")
+							return "Sent from my Snapdragon"
+						else if (item == "joke")
+							return "An octopus flailing in the wind"
+					});
+				}
+			},
+			methods: {
+				sortSignatureItems: function() {
+					const ORDER = ["greeting", "sent", "joke"];
+					this.signatureItems.sort(function (a, b) {
+						return ORDER.indexOf(a) > ORDER.indexOf(b);
+					});
+				}
+			}
+		});
+		
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				numerals: [ "1", "2", "3", "4", "5" ],
+				english: [ "one", "two", "three", "four", "five" ],
+				malay: [ "satu", "dua", "tiga", "empat", "lima" ],
+				indexDisplayed: 1,
+				selected: "Numerals"
+			},
+			methods: {
+				cycle: function () {
+					++this.indexDisplayed;
+					if (this.indexDisplayed > this.numerals.length)
+						this.indexDisplayed = 1;
+				}
+			}
+		});
+		setInterval(app2.cycle, 750);
+	</SCRIPT>
+	
+</HTML>

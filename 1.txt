@@ -442,3 +442,10 @@
 - Setting up of event listeners in the HTML template is preferred by Vue, to
   keep the JS code DOM-free. Furthermore, cleanup removal of event listeners
   is not something for the application programmer to worry about this way.
+
+
+- The v-model directive is for two-way bindings between input elements and
+  Vue instance data. It listens to the correct event for the element, and
+  it sets the correct property.
+- v-model is also used to set a <textarea>'s contents to a Vue instance
+  property, because interpolation doesn't work there.
