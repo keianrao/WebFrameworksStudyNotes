@@ -46,6 +46,12 @@ module.exports = function (environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+  
+  ENV.MAPBOX_TOKEN = 'pk.eyJ1Ijoia2VpYW5yYW8iLCJhIjoiY2txOXZqY2cyMDkzZTMwbzMzdGt0YmVteiJ9.H8vhytaq5AOSAcLOq1Z6iQ';
+  // This token has its scope set for only static images. Normally, we
+  // wouldn't upload tokens to a public repository. Also, Mapbox can
+  // restrict use of a token to one domain, which I guess would be
+  // alright to use for prod, showing the token in the repository.
 
   return ENV;
 };

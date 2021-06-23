@@ -119,6 +119,25 @@
   Angular and Vue may be friendlier in this regard.
 
 
+- Ember doesn't seem to have the ability for templates to call a function
+  in their component's class.. except through getters? Templates probably
+  call functions only in the context of using a generated value, so getters
+  only wouldn't be unfair.
+- In stead of arbitrary functions, Ember has 'helpers', which go in
+  app/helpers. The syntax is "{{helper-name params &c}}".
+	- Parameters can be given in two ways. When unnamed, they are positional
+	  parameters, and go inside the first argument to the helper function,
+	  which is an array.
+	- When named, they go inside the second argument to the helper function,
+	  which is an object. Named parameters are like so:
+	  "{{helper-name pos1 pos2 named1=val3 named2=val4}}"
+- Using getters is what is officially recommended.
+  The component class has access to arguments through 'this.args'.
+  	- While you can write a getter "get src() { ... }", this doesn't mean
+	  you can omit the attribute from the template. You have to do
+	  "src={{this.src}}".
+
+
 [Angular]
 - Angular is an entire platform, containing more than a framework.
 - It is all TypeScript-based.

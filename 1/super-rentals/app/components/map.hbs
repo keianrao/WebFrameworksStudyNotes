@@ -1,1 +1,13 @@
-{{yield}}
+<div class="map">
+	<img
+		alt="Map of location. Coordinates are {{@lat}},{{@lng}}"
+		...attributes
+		src="{{mapbox-static-image-url @lng @lat @zoom @width @height}}"
+		width="{{@width}}" height="{{@height}}"
+	/>
+	<!--
+	Attribute order matters, with regards to '..attributes'. Imagine it
+	as interpolation - it overrides attributes before, attributes after
+	override it.
+	-->
+</div>

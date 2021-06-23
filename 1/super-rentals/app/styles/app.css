@@ -204,7 +204,16 @@ But, one I don't understand..
 	margin-bottom: 25px;
 }
 
-.jumbo img {
+.jumbo > img {
+	/*
+	Original stylesheet had '.jumbo img' I think, and the problem is,
+	in index.hbs we had put *everything* in the page inside a <Jumbo>.
+	So this rule was messing up all images.
+	
+	I've given it to only immediate children, which will affect the
+	Tomster, I believe. It doesn't seem like the other images need these.
+	*/
+	
 	height: 200px;
 	position: relative;
 	top: -25px;
@@ -242,15 +251,6 @@ But, one I don't understand..
 }
 
 .rental .image img {
-	height: unset;
-	position: unset;
-	top: unset;
-	right: unset;
-	/*
-	Negate the effects of .jumbo img above.
-	It was messing up the rental images - how did the authors miss it?
-	*/
-
 	max-width: 100%;
 }
 

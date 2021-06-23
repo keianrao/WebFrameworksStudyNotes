@@ -22,5 +22,6 @@ module('Integration | Component | rental', function(hooks) {
 	assert.dom('article .detail.bedrooms').includesText('15');
 	// includesText introduces a way to defeat these tests.
 	assert.dom('article .image');
+	assert.dom('article .map');
   });
 });
