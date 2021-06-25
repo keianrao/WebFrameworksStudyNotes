@@ -1,24 +1,33 @@
 import Route from '@ember/routing/route';
 
+const COMMUNITY_CATEGORIES = [ 'Condo', 'Townhouse', 'Apartment' ];
+
 export default class IndexRoute extends Route {
 	async model() {
-		return {
-			'title': 'Grand Old Mansion',
-			'owner': 'Veruca Salt',
-			'city': 'San Francisco',
-			'location': {
-				lat: 37.7749,
-				lng: -122.4194
-			},
-			'category': 'Estate',
-			'type': 'Standalone',
-			'bedrooms': 15,
-			'image': 'assets/images/Crane_estate_(5).jpg',
-			'description':
-				'This grand old mansion sits on over 100 acres'
-				+ ' of rolling hills and dense redwood forests.'
-		};
-		// Returning a constant model for now.
-		// Note that this is not an array.
+		var response = await fetch('/api/rentals.json');
+		
+		var { data } = await response.json();
+		// What on earth..? Using fetch is that terse?
+		// Also, what happens if the promise fails?
+		
+		return data.map(function (model) {
+			var { attributes } = model;
+			// (Ignoring 'type' and 'id')
+			
+			var hasCommunityCategory = 
+				COMMUNITY_CATEGORIES.includes(attributes.category);
+			/*
+			var type = hasCommunityCategory ? 'Community' : 'Standalone';
+			// Wasn't in our data, so we have to determine it ourselves.
+			
+			return { type, ...attributes };
+			// Merge 'type' into rest of attributes.
+			/*/
+			attributes.type =
+				hasCommunityCategory ? 'Community' : 'Standalone';
+				
+			return attributes;
+			//*/
+		});
 	}
 }
