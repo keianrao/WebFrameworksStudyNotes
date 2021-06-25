@@ -136,6 +136,14 @@
   	- While you can write a getter "get src() { ... }", this doesn't mean
 	  you can omit the attribute from the template. You have to do
 	  "src={{this.src}}".
+	  
+	  
+- Ember organises pages into routes - each route has its own model.
+  The model is stored in a route file, which contains the model hook -
+  an async method 'model()' that fetches the data. It is automatically
+  called whenever the route is entered.
+- The return value of the model hook is automatically stored in @model,
+  accessible by the template for that route.
 
 
 [Angular]
