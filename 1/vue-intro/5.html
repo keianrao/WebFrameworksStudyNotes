@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<HTML>
+
+	<META CHARSET="UTF-8">
+
+	<BODY>
+		<DIV ID="app">
+			<BUTTON-COUNTER></BUTTON-COUNTER>
+			<BUTTON-COUNTER></BUTTON-COUNTER>
+			<BUTTON-COUNTER></BUTTON-COUNTER>
+		</DIV>
+		<HR>
+		<DIV ID="app2">
+			<COLOURED-TEXT
+				V-FOR="inst in insts" :KEY="inst.id"
+				:INST="inst">
+			</COLOURED-TEXT>
+		</DIV>
+		<HR>
+		<DIV ID="app3">
+			<P :STYLE="{ fontSize: ptsz }">{{content}}</P>
+			<SIZE-BUTTONS @SHRINK="--ptsz" @ENLARGE="++ptsz"></SIZE-BUTTONS>
+		</DIV>
+	</BODY>
+
+	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
+	<SCRIPT>
+		Vue.component('button-counter', {
+			data: function() {
+				return { count: 0 };
+				/* Dynamically generated object for data? */
+			},
+			template: '<button @click="++count">You clicked me {{ count }} times.</button>'
+		});
+		new Vue({ el: "#app" });
+		
+		Vue.component('coloured-text', {
+			props: [ 'inst' ],
+			template: `
+				<span :style='colourStyle(inst.colour)'>
+					{{inst.text}}
+				</span>
+			`,
+			methods: {
+				colourStyle: function(colour) {
+					return 'color: ' + colour;
+				}
+			}
+		});
+		new Vue({
+			el: '#app2',
+			data: {
+				insts: [
+					{ id: '1', colour: 'red', text: 'Rouge' },
+					{ id: '2', colour: 'green', text: 'Vert' },
+					{ id: '3', colour: 'blue', text: 'Bleu' }
+				]
+			}
+		});
+		
+		Vue.component('size-buttons', {
+			data: function() { return {}; },
+			template: `
+				<DIV>
+					<BUTTON V-ON:CLICK="$emit('shrink')">Shrink</BUTTON>
+					<BUTTON V-ON:CLICK="$emit('enlarge')">Enlarge</BUTTON>
+					<!--
+					For some reason, Vue is not detecting these clicks.
+					I've tried the usual, making everything lowercase,
+					using an inline statement and calling a method,
+					adding a class to the div above, so on.
+					Nothing is working.
+					-->
+				</DIV>
+			`
+		});
+		new Vue({
+			el: '#app3',
+			data: {
+				content: "Insert a paragraph of text here.",
+				ptsz: 12
+			}
+		});
+	</SCRIPT>
+	
+</HTML>

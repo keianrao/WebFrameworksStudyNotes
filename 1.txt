@@ -254,9 +254,9 @@
 - In Angular CLI, 'ng build' compiles the app, then bundles it into the
   'dist' folder. Which contains all files needed for a web server to
   host the app.
-- The files are said to be static. I'm guessing what that means is that
-  they don't edit local files nor spawn local processes, all the activities
-  are running within the browser..?
+- The resulting files are said to be static. I'm guessing what that means
+  is that they don't edit local files nor spawn local processes, all
+  the framework activities are running within the browser..?
 
   
 [Vue]
@@ -462,9 +462,38 @@
   keep the JS code DOM-free. Furthermore, cleanup removal of event listeners
   is not something for the application programmer to worry about this way.
 
-
 - The v-model directive is for two-way bindings between input elements and
   Vue instance data. It listens to the correct event for the element, and
   it sets the correct property.
 - v-model is also used to set a <textarea>'s contents to a Vue instance
   property, because interpolation doesn't work there.
+  
+  
+- Vue components are formally defined Vue instances - being the latter
+  they accept all the usual things we've been doing with new Vue instances.
+  	- However, a Vue component cannot be used as a root element,
+	  it ignores 'el'.
+- You should use explicit closing tags with components ("..></component>").
+  When you add several components in a row, an implicit closing tag
+  ("<component />") will only render one instance of the component.
+- Unlike a regular Vue instance, a Vue component's data field must be a
+  *function*, which returns the usual object.
+- When a function returning an object is called, it returns a new object.
+  Were the component definition to just set an object into 'data', then
+  instances would share that object.
+  
+- Components can be nested. A parent component would depend on its child
+  components - to resolve those names, in Vue a component has to be registered.
+- There is local and global registration. Global registration is done using
+  Vue.component(name, definition).
+  
+- Vue components can have 'props' (presumably short for "properties").
+  They are custom (HTML) attributes for the component. When a value is
+  set for that attribute, that attribute-value pair automatically becomes
+  a (JavaScript object) property for that component's instance.
+- In a component definition, 'props' is an array of strings, of just the
+  attribute values.
+- It is common to want to map values from the component's 'data' to them.
+  Recall that "v-bind:attribute='code'" basically sets the value of
+  a HTML attribute using JavaScript code. So for setting a prop's value,
+  one would do "v-bind:prop='somethingInData'".
