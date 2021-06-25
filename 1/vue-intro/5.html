@@ -18,7 +18,7 @@
 		</DIV>
 		<HR>
 		<DIV ID="app3">
-			<P :STYLE="{ fontSize: ptsz }">{{content}}</P>
+			<P :STYLE="{ fontSize: ptsz + 'px' }">{{content}}</P>
 			<SIZE-BUTTONS @SHRINK="--ptsz" @ENLARGE="++ptsz"></SIZE-BUTTONS>
 		</DIV>
 	</BODY>
@@ -28,24 +28,22 @@
 		Vue.component('button-counter', {
 			data: function() {
 				return { count: 0 };
-				/* Dynamically generated object for data? */
 			},
-			template: '<button @click="++count">You clicked me {{ count }} times.</button>'
+			template: `
+				<button @click="++count">
+					You clicked me {{ count }} times.
+				</button>
+			`
 		});
 		new Vue({ el: "#app" });
 		
 		Vue.component('coloured-text', {
 			props: [ 'inst' ],
 			template: `
-				<span :style='colourStyle(inst.colour)'>
+				<span :style='{ color: inst.colour }'>
 					{{inst.text}}
 				</span>
-			`,
-			methods: {
-				colourStyle: function(colour) {
-					return 'color: ' + colour;
-				}
-			}
+			`
 		});
 		new Vue({
 			el: '#app2',
@@ -59,18 +57,10 @@
 		});
 		
 		Vue.component('size-buttons', {
-			data: function() { return {}; },
 			template: `
 				<DIV>
-					<BUTTON V-ON:CLICK="$emit('shrink')">Shrink</BUTTON>
-					<BUTTON V-ON:CLICK="$emit('enlarge')">Enlarge</BUTTON>
-					<!--
-					For some reason, Vue is not detecting these clicks.
-					I've tried the usual, making everything lowercase,
-					using an inline statement and calling a method,
-					adding a class to the div above, so on.
-					Nothing is working.
-					-->
+					<BUTTON @click="$emit('shrink')">Shrink</BUTTON>
+					<BUTTON @click="$emit('enlarge')">Enlarge</BUTTON>
 				</DIV>
 			`
 		});
@@ -78,7 +68,7 @@
 			el: '#app3',
 			data: {
 				content: "Insert a paragraph of text here.",
-				ptsz: 12
+				ptsz: 16
 			}
 		});
 	</SCRIPT>

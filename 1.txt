@@ -497,3 +497,21 @@
   Recall that "v-bind:attribute='code'" basically sets the value of
   a HTML attribute using JavaScript code. So for setting a prop's value,
   one would do "v-bind:prop='somethingInData'".
+  
+  
+- Recall that v-bind:style accepts a Vue style object, which instead of being
+  a string of CSS, is a JavaScript object. It too has colon-separated
+  key-value pairs within curly braces, but, its syntax is different from CSS:
+  	- It can accept kebab-case, but the name needs to be in quotation marks;
+	- Key-value pairs are separated by commas, not semicolons;
+	- A semicolon on the last pair, or any pair, is forbidden.
+  The interesting part is that Vue's syntax errors on these do not
+  effectively hint that these were what's wrong.
+- Similarly, Vue component templates are in HTML, but Vue's HTML parser
+  isn't as forgiving as the browser's. Uppercase tag names *appear* to be
+  supported, in that <BUTTON> will be rendered as <BUTTON> and the browser
+  renders it as a button, but, attributes are case-sensitive. So in a
+  component template, no '@CLICK', rather '@click'. Yet, for the Vue-intended
+  HTML inside the HTML file itself, case-insensitivity is supported. For a
+  component that '$emit("plant")', a web component that "@PLANT='doSmtg()'"
+  will actually catch the event and doSmtg.
