@@ -515,3 +515,13 @@
   HTML inside the HTML file itself, case-insensitivity is supported. For a
   component that '$emit("plant")', a web component that "@PLANT='doSmtg()'"
   will actually catch the event and doSmtg.
+
+
+- We saw that v-model works with builtin HTML components with differing
+  change events and setting methods. v-model can work with Vue components too,
+  but the component designer has to implement a 'value' prop and emit its
+  own input event giving out a new value.
+
+- Vue components have a start and close tag. Text contents can go within.
+  Vue components can "relocate" these contents into somewhere in their
+  template, using the <slot> element.

@@ -21,6 +21,12 @@
 			<P :STYLE="{ fontSize: ptsz + 'px' }">{{content}}</P>
 			<SIZE-BUTTONS @SHRINK="--ptsz" @ENLARGE="++ptsz"></SIZE-BUTTONS>
 		</DIV>
+		<HR>
+		<DIV ID="app4">
+			<BOXED-TEXT :DISPLAY="display" :TEXT="text1"></BOXED-TEXT>
+			<BOXED-TEXT :DISPLAY="display" :TEXT="text2"></BOXED-TEXT>
+			<DISPLAY-TOGGLE @DISPLAY="display = $event"></DISPLAY-TOGGLE>
+		</DIV>
 	</BODY>
 
 	<SCRIPT SRC="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></SCRIPT>
@@ -69,6 +75,46 @@
 			data: {
 				content: "Insert a paragraph of text here.",
 				ptsz: 16
+			}
+		});
+		
+		Vue.component('boxed-text', {
+			template: "<div class='boxed-text' :style='style'>{{text}}</div>",
+			props: ['text', 'display'],
+			/*
+			I haven't been able to find a lot of info on it, but it seems that
+			the preferred way for editing a child component's style is for
+			thee child to expose select CSS properties through props.
+			*/
+			computed: {
+				style: function() {
+					return {
+						"padding": "4px",
+						"border": "1px solid #00000040",
+						"background-color": "#0000FF40",
+						"display": this.display
+					}
+				}
+			}
+		});
+		Vue.component('display-toggle', {
+			template: `
+				<div>
+					<button @click="t('block')">Block</button>
+					<button @click="t('inline')">Inline</button>
+					<button @click="t('inline-block')">Inline block</button>
+				</div>
+			`,
+			methods: {
+				t: function(type) { this.$emit('display', type); }
+			}
+		});
+		new Vue({
+			el: '#app4',
+			data: {
+				text1: "Text on the left box.",
+				text2: "Text on the right box.",
+				display: "inline-block"
 			}
 		});
 	</SCRIPT>
