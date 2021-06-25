@@ -7,15 +7,31 @@ module('Integration | Component | rental', function(hooks) {
   setupRenderingTest(hooks);
 
   test('renders information about a rental property', async function(assert) {
-  	await render(hbs`<Rental />`);
-	
-	assert.dom('article').hasClass('rental');
-	assert.dom('article h3').hasText('Grand Old Mansion');
+	this.setProperties({
+		rental: {
+			'title': 'Grand Old Mansion',
+			'owner': 'Veruca Salt',
+			'city': 'San Francisco',
+			'location': {
+				lat: 37.7749,
+				lng: -122.4194
+			},
+			'category': 'Estate',
+			'type': 'Standalone',
+			'bedrooms': 15,
+			'image': 'assets/images/Crane_estate_(5).jpg',
+			'description':
+				'This grand old mansion sits on over 100 acres'
+				+ ' of rolling hills and dense redwood forests.'
+		}
+	});
+	await render(hbs`<Rental @rental={{this.rental}} />`);
 	/*
-	Later we will have to construct a Rental with an object, then see that
-	the text contents match. I wonder how that's going to look like..
+	We prepared our own copy of the model, to test against.
 	*/
 	
+	assert.dom('article').hasClass('rental');
+	assert.dom('article h3').hasText('Grand Old Mansion');	
 	assert.dom('article .detail.owner').includesText('Veruca Salt');
 	assert.dom('article .detail.type').includesText('Standalone');
 	assert.dom('article .detail.location').includesText('San Francisco');
